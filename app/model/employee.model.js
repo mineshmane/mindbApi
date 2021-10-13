@@ -33,7 +33,7 @@ const EmployeeSchema = mongoose.Schema({
     },
     empId: {
         type: Number,
-        required: [true, 'email is required'],
+        required: [true, 'empId is required'],
         unique: true
     },
 

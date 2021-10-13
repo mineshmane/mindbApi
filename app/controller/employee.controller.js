@@ -7,7 +7,6 @@ exports.addEmployee = (req, res) => {
     try {
         console.log("in controller ", req.body);
         service.addEmployeeService(req.body).then((result) => {
-            // return res.send(res)
             res.status(200).send(result);
         }).catch((err) => {
             res.status(200).send(err)
@@ -20,63 +19,86 @@ exports.addEmployee = (req, res) => {
 };
 
 exports.UpdateEmployee = (req, res) => {
-    console.log("in controller ", req.body);
-    service.UpdateServvice(req.body).then((result) => {
-        // return res.send(res)
-        res.status(200).send(result);
-    }).catch((err) => {
-        res.status(200).send(err)
-    })
+    try {
+        console.log("in controller ", req.body);
+        service.UpdateServvice(req.body).then((result) => {
+            res.status(200).send(result);
+        }).catch((err) => {
+            res.status(200).send(err)
+        })
+    } catch (error) {
+        res.send(error)
+    }
+  
 
 };
 
 exports.deleteEmployee = (req, res) => {
-    console.log("in controller ", req.body);
-    service.deleteService(req.body).then((result) => {
-        res.status(200).send(result);
-    }).catch((err) => {
-        res.status(500).send(err)
-    })
+    try {
+        
+        console.log("in controller ", req.body);
+        service.deleteService(req.body).then((result) => {
+            res.status(200).send(result);
+        }).catch((err) => {
+            res.status(500).send(err)
+        })
+    } catch (error) {
+        res.send(error)
+        
+    }
+   
 
 };
 
 
 exports.getEmployeeList = (req, res) => {
+    try {
+        
+        var user_id = req.params['id']
 
-    var user_id = req.params['id']
-    console.log("in controller ", user_id);
+        service.getEmployeeService(user_id).then((result) => {
+            return res.status(200).send(result);
+        }).catch((err) => {
+            res.status(200).send(err)
+        })
+    } catch (error) {
+        res.send(error)
+        
+    }
 
-    service.getEmployeeService(user_id).then((result) => {
-        // return res.send(res)
-        return res.status(200).send(result);
-    }).catch((err) => {
-        res.status(200).send(err)
-    })
+   
 }
 
 exports.Payments = (req, res) => {
+    try {
+        
+        strip.charges.create({
+            amount: req.body.amount,
+            currency: 'usd',
+            description: 'abcd',
+            source: req.body.token.id
+        }, (err, charge) => {
+            if (err) {
+                return res.send(err)
+            }
+            else {
+                paymentModel.StorePayment(req).then((result) => {
+                    let msg = {
+                        messgae: "payment successfull",
+                        result: result
+                    }
+                    res.send(msg)
+                }).catch((err) => {
+                    res.send(err)
+                })
+            }
+        })
+    } catch (error) {
+        
+        res.send(error)
+    }
 
-    strip.charges.create({
-        amount: req.body.amount,
-        currency: 'usd',
-        description: 'abcd',
-        source: req.body.token.id
-    }, (err, charge) => {
-        if (err) {
-            return res.send(err)
-        }
-        else {
-            paymentModel.StorePayment(req).then((result) => {
-                let msg = {
-                    messgae: "payment successfull",
-                    result: result
-                }
-                res.send(msg)
-            }).catch((err) => {
-                res.send(err)
-            })
-        }
-    })
+    
 
 
 }

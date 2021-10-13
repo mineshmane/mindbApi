@@ -39,7 +39,6 @@ const ManagerSchema = mongoose.Schema({
     timestamps: true
 });
 
-// module.exports = mongoose.model('Moment', MomentSchema);
 const Manager = mongoose.model('Manager', ManagerSchema);
 
 
@@ -55,7 +54,6 @@ exports.createMoment = (req) => {
     })
 };
 
-// Retrieve and return all notes from the database.
 exports.findAllUser = (req) => {
     return new Promise((resolve, reject) => {
         Manager.find().then(res => {
@@ -69,7 +67,6 @@ exports.findAllUser = (req) => {
 
 };
 
-// Find a single note with a noteId
 exports.findUser = (req) => {
     return new Promise((resolve, reject) => {
         Manager.findOne(req).then((response) => {
@@ -83,12 +80,4 @@ exports.findUser = (req) => {
 
 };
 
-// Update a note identified by the noteId in the request
-exports.findOneAndUpdate = (req, res) => {
 
-};
-
-// Delete a note with the specified noteId in the request
-exports.delete = (req, res) => {
-
-};

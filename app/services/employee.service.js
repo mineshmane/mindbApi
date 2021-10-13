@@ -24,7 +24,6 @@ exports.addEmployeeService = (req) => {
 };
 
 
-// Retrieve and return all notes from the database.
 exports.getEmployeeService = (req) => {
     var response = {}
     return model.getAllEmployees(req).then((res) => {
