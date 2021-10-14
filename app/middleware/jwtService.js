@@ -23,7 +23,6 @@ exports.auth = (req, res, next) => {
     exports.generateToken = (obj) => {
         console.log(obj);
         return new Promise((resolve, reject) => {
-            // var token = jwt.sign(obj, config.secretKey)
 
             jwt.sign(obj, "privateKey", function (err, token) {
                 if (err) {

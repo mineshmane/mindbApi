@@ -58,7 +58,6 @@ exports.createEmployee = (req) => {
     })
 };
 
-// Retrieve and return all notes from the database.
 exports.getAllEmployees = (req) => {
     return new Promise((resolve, reject) => {
         Employee.find().then(res => {
@@ -72,7 +71,6 @@ exports.getAllEmployees = (req) => {
 
 };
 
-// Find a single note with a noteId
 exports.findUser = (req) => {
     return new Promise((resolve, reject) => {
         Employee.findOne(req).then((response) => {

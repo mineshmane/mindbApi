@@ -1,7 +1,7 @@
 const model = require('../model/manager.Model');
 
 const JWT = require('../middleware/jwtService')
-exports.registerService = (req, res) => {
+exports.registerService = (req) => {
 
     let reqPayload = {
         firstName: req.firstName,
@@ -23,7 +23,6 @@ exports.registerService = (req, res) => {
 
 };
 
-// Retrieve and return all notes from the database.
 exports.getUserService = (req, res) => {
     return model.findAllUser(req).then((res) => {
         console.log(res);
@@ -34,7 +33,6 @@ exports.getUserService = (req, res) => {
 
 };
 
-// Find a single note with a noteId
 exports.loginService = (req, res) => {
     console.log(req.password);
     let response = {}

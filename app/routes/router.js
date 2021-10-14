@@ -16,11 +16,6 @@ router.delete('/emp/delete/:id', Authentication.auth, emp.deleteEmployee);
 
 
 router.post('/emp/payment',Authentication.auth, emp.Payments);
-
-
-
-
-
 router.get('/emp/getEmpList', Authentication.auth, emp.getEmployeeList);
 
 
