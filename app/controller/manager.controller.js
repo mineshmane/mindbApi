@@ -1,13 +1,15 @@
 const userService = require('../services/manager.service');
 
 
-exports.registration = (req, res) => {
+exports.registration = (req, res ) => {
     try {
 
         console.log("in controller ", req.body);
         userService.registerService(req.body).then((result) => {
+            console.log("error result success in cotroller",result);
             res.status(200).send(result);
         }).catch((err) => {
+            console.log("eroor in controller",err);
             res.status(500).send(err)
         })
     } catch (error) {

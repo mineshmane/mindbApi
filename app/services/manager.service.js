@@ -18,6 +18,7 @@ exports.registerService = (req) => {
         console.log(res);
         return res
     }).catch((err) => {
+        console.log(" reject in service",err);
         return err
     })
 

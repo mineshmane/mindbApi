@@ -49,6 +49,7 @@ exports.createMoment = (req) => {
             console.log("response after creating in model ", res);
             return resolve(res)
         }).catch((err) => {
+            console.log("registration error",err);
             return reject(err)
         })
     })
